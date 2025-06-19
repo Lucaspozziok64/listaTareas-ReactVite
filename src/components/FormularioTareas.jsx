@@ -24,7 +24,7 @@ const FormularioTareas = () => {
           <Button variant='primary' type='submit'>Enviar</Button>
         </Form.Group>
       </Form>
-      <ListaTareas />
+      <ListaTareas tareas={tareas} />
     </div>
   );
 };
