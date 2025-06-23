@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <main className='container my-4'>
-        <h1 className='text-center'>Lista de Traeas</h1>
+        <h1 className='text-center'>Lista de Tareas</h1>
         <FormularioTareas />
       </main>
       <footer className='bg-dark text-light text-center py-3'>

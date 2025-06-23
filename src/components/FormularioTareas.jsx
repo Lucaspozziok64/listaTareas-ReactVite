@@ -1,11 +1,18 @@
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import ListaTareas from './ListaTareas';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const FormularioTareas = () => {
   const [tarea, setTarea] = useState('')
-  const [tareas, setTareas] = useState([])
+  const tareasLocalStorage = JSON.parse(localStorage.getItem('listaTareas')) || []
+  const [tareas, setTareas] = useState(tareasLocalStorage)
+
+  useEffect(()=> {
+    //Todas las lienas que escriba aqui se ejecutan automaticamente en montaje y actualizacion del componente
+    console.log('desde useEffect');
+    localStorage.setItem('listaTareas', JSON.stringify(tareas))
+  }, [tareas])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +24,7 @@ const FormularioTareas = () => {
   }
 
   const borrarTarea = (nombreTarea) => {
-    const tareasFiltradas = tareas.filter((item)=> item !== tarea)
+    const tareasFiltradas = tareas.filter((item)=> item !== nombreTarea)
     //Actualizar el estado tareas
     setTareas(tareasFiltradas)
   }
