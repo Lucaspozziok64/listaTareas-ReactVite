@@ -1,43 +1,76 @@
-import { Button } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-import ListaTareas from './ListaTareas';
-import { useState, useEffect } from 'react';
+import { Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import ListaTareas from "./ListaTareas";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 const FormularioTareas = () => {
-  const [tarea, setTarea] = useState('')
-  const tareasLocalStorage = JSON.parse(localStorage.getItem('listaTareas')) || []
-  const [tareas, setTareas] = useState(tareasLocalStorage)
+  const tareasLocalStorage =
+    JSON.parse(localStorage.getItem("listaTareas")) || [];
+  const [tareas, setTareas] = useState(tareasLocalStorage);
 
-  useEffect(()=> {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(() => {
     //Todas las lienas que escriba aqui se ejecutan automaticamente en montaje y actualizacion del componente
-    console.log('desde useEffect');
-    localStorage.setItem('listaTareas', JSON.stringify(tareas))
-  }, [tareas])
+    console.log("desde useEffect");
+    localStorage.setItem("listaTareas", JSON.stringify(tareas));
+  }, [tareas]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Aqui deberia guardar la tarea');
+  const agregarTareas = (data) => {
+    console.log("Aqui deberia guardar la tarea");
+    console.log(data.inputTarea);
     //Tomar la tarea que esta en el state taras guardar en el state taras (arrays)
-    setTareas([...tareas, tarea])
+    setTareas([...tareas, data.inputTarea]);
     //Limpiar el formulario
-    setTarea('')
-  }
+    reset();
+  };
 
   const borrarTarea = (nombreTarea) => {
-    const tareasFiltradas = tareas.filter((item)=> item !== nombreTarea)
+    const tareasFiltradas = tareas.filter((item) => item !== nombreTarea);
     //Actualizar el estado tareas
-    setTareas(tareasFiltradas)
-  }
+    setTareas(tareasFiltradas);
+  };
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3 d-flex">
-          <Form.Control type="text" placeholder="Ingresa una tarea" onChange={(e)=> setTarea(e.target.value)} value={tarea}/>
-          <Button variant='primary' type='submit'>Enviar</Button>
+      <Form onSubmit={handleSubmit(agregarTareas)} className="mb-4">
+        <Form.Group className="mb-2 d-flex">
+          <Form.Control
+            type="text"
+            placeholder="Ingresa una tarea"
+            onChange={(e) => setTarea(e.target.value)}
+            {...register("inputTarea", {
+              required: "La tarea es un dato obligatorio",
+              minLength: {
+                value: 3,
+                message: "La tarea debe tener 3 caracteres como minimo",
+              },
+              maxLength: {
+                value: 50,
+                message: "La tarea debe contener como maximo 50 caracteres",
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
+                message:
+                  "La tarea debe contener caracteres alfanumericos mayusculas o minusculas",
+              },
+            })}
+          />
+          <Button variant="primary" type="submit">
+            Enviar
+          </Button>
         </Form.Group>
+        <Form.Text className="text-danger">
+          {errors.inputTarea?.message}
+        </Form.Text>
       </Form>
-      <ListaTareas tareas={tareas} borrarTarea={borrarTarea}/>
+      <ListaTareas tareas={tareas} borrarTarea={borrarTarea} />
     </div>
   );
 };
