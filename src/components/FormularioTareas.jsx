@@ -39,7 +39,8 @@ const FormularioTareas = () => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit(agregarTareas)} className="mb-4">
+      <Form onSubmit={handleSubmit(agregarTareas)} className="mb-4 formulario">
+        <h3 className="text-center text-white">Ingresa tus tareas</h3>
         <Form.Group className="mb-2 d-flex">
           <Form.Control
             type="text"
@@ -62,11 +63,11 @@ const FormularioTareas = () => {
               },
             })}
           />
-          <Button variant="primary" type="submit">
+          <button type="submit" className="mx-2 botonEnviar">
             Enviar
-          </Button>
+          </button>
         </Form.Group>
-        <Form.Text className="text-danger">
+        <Form.Text className="bg-danger text-white">
           {errors.inputTarea?.message}
         </Form.Text>
       </Form>

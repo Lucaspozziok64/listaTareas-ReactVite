@@ -8,10 +8,13 @@ function App() {
     <>
       <main className='container my-4'>
         <h1 className='text-center'>Lista de Tareas</h1>
-        <FormularioTareas />
+        <section className='container'>
+          <FormularioTareas />
+        </section>
       </main>
-      <footer className='bg-dark text-light text-center py-3'>
-        <p>&copy; Todos los derechos reservados</p>
+      <footer className='bg-dark text-light text-center'>
+        <p className='mb-0'>&copy; Todos los derechos reservados</p>
+        <p className='mb-0'>Desarrollado por <a href="http://">Lucas Figueroa</a></p>
       </footer>
     </>
   )
