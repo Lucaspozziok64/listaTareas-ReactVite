@@ -1,12 +1,37 @@
-# React + Vite
+📝 Aplicación de Tareas con React + Vite
+- 
+-Aplicación moderna para gestionar tareas con React, Vite, diseño con gradientes y persistencia en localStorage
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✨ Características
+- 
+- ✅ Agregar nuevas tareas con validación
+- ❌ Eliminar tareas individualmente
+- 💾 Persistencia automática en localStorage
+- 🎨 Diseño moderno con gradientes animados
+- 📱 Totalmente responsive
 
-Currently, two official plugins are available:
+▶️ Cómo ejecutar
+- 
+- 1-Clona el repositorio:
+````
+git clone https://github.com/Lucaspozziok64/listaTareas-ReactVite.git
+````
+- 2-Instala dependencias:
+````
+npm i
+````
+- 3-inicia el servidor:
+````
+npm run dev
+````
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🛠️ Tecnologías usadas
+- 
+- ⚛️ React 18 (Hooks)
+- ⚡ Vite 4 (Build tool)
+- 📱 Styled Components (opcional) / CSS Modules
+- 📦 LocalStorage API
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👨‍💻Autor
+- 
+- Lucas Figueroa
